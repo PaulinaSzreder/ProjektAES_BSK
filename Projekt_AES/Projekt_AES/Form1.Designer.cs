@@ -1,6 +1,6 @@
 ﻿namespace Projekt_AES
 {
-    partial class Form1
+    partial class DocumentEncryption
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.chooseFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // Form1
+            // chooseFile
+            // 
+            this.chooseFile.Location = new System.Drawing.Point(52, 62);
+            this.chooseFile.Name = "chooseFile";
+            this.chooseFile.Size = new System.Drawing.Size(75, 23);
+            this.chooseFile.TabIndex = 0;
+            this.chooseFile.Text = "Plik";
+            this.chooseFile.UseVisualStyleBackColor = true;
+            this.chooseFile.Click += new System.EventHandler(this.chooseFile_Click);
+            // 
+            // DocumentEncryption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 691);
-            this.Name = "Form1";
+            this.Controls.Add(this.chooseFile);
+            this.Name = "DocumentEncryption";
             this.Text = "Document Encryption";
+            this.Load += new System.EventHandler(this.DocumentEncryption_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button chooseFile;
     }
 }
 
