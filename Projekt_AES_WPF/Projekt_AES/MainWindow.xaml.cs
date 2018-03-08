@@ -52,5 +52,10 @@ namespace Projekt_AES
                 MessageBox.Show("Nie wybrano metody szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void chooseFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

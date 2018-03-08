@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid Cursor="Arrow">
-        <Button Content="PLik" HorizontalAlignment="Left" Margin="150,73,0,0" VerticalAlignment="Top" Width="107" FontSize="20" Click="chooseFile_Click"/>
+        <Button Content="Plik" HorizontalAlignment="Left" Margin="150,73,0,0" VerticalAlignment="Top" Width="107" FontSize="20" Click="chooseFile_Click"/>
         <Label Content="Wybierz plik do zaszyfrowania" HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="16"/>
         <Label Content="Wybierz tryb szyfrowania" HorizontalAlignment="Left" Margin="23,127,0,0" VerticalAlignment="Top" FontSize="16"/>
         <ComboBox Name="EncryptionMode" HorizontalAlignment="Left" Margin="137,164,0,0" VerticalAlignment="Top" Width="120" >
