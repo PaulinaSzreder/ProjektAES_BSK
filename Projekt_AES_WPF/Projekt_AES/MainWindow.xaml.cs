@@ -35,5 +35,7 @@ namespace Projekt_AES
                 FileStream fileStream = new FileStream(openFileDialog.FileName, FileMode.Open);
             }
         }
+
+
     }
 }
