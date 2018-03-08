@@ -26,16 +26,31 @@ namespace Projekt_AES
         {
             InitializeComponent();
         }
+
+        public static String mode;
+        public static FileStream fileStream;
+        
+
         private void chooseFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                // Możliwe że fileStream trzeba będzie zadeklarować wyżej, a tu zainicjalizować.
-                FileStream fileStream = new FileStream(openFileDialog.FileName, FileMode.Open);
+                fileStream = new FileStream(openFileDialog.FileName, FileMode.Open);
             }
         }
 
-
+        // Wyrzuca wyjątek kiedy nic się nie wybierze, należy go obsłużyć TODO
+        private void Encryption_Click(object sender, RoutedEventArgs e) 
+        {
+            try
+            {
+                mode = EncryptionMode.SelectedItem.ToString().Remove(0, EncryptionMode.SelectedItem.ToString().Length - 3);
+            }
+            catch(NullReferenceException ex)
+            {
+                MessageBox.Show("Nie wybrano metody szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
