@@ -53,9 +53,6 @@ namespace Projekt_AES
             }
         }
 
-        private void chooseFile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }
