@@ -24,8 +24,7 @@ namespace Projekt_AES
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {
-           
+        { 
             InitializeComponent();
         }
 
@@ -44,13 +43,22 @@ namespace Projekt_AES
             }
         }
 
-
         private void encryptFile_Click(object sender, RoutedEventArgs e)
         {
             string original = Input.Text;
                
             encryptedText = EncryptStringToBytes(original, myAes.Key, myAes.IV);
 
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                if (saveFileDialog.FileName != "")
+                {
+                    FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.CreateNew);
+                    fs.Write(encryptedText, 0, encryptedText.Length);
+                    fs.Close();
+                }
+            }
             MessageBox.Show("Zaszyfrowano tekst");
         }
 
@@ -70,14 +78,6 @@ namespace Projekt_AES
             try
             {
                 mode = EncryptionMode.SelectedItem.ToString().Remove(0, EncryptionMode.SelectedItem.ToString().Length - 3);
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                if (saveFileDialog.ShowDialog() == true)
-                {
-                    if (saveFileDialog.FileName != "")
-                    {
-                        System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
-                    }
-                }
             }
             catch(NullReferenceException ex)
             {
@@ -105,7 +105,6 @@ namespace Projekt_AES
                     {
                         using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
                         {
-
                             //Write all data to the stream.
                             swEncrypt.Write(data);
                         }
@@ -113,7 +112,7 @@ namespace Projekt_AES
                     }
                 }
             }
-
+            
             // Return the encrypted bytes from the memory stream.
             return encrypted;
         }
