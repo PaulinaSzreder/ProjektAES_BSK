@@ -46,6 +46,14 @@ namespace Projekt_AES
             try
             {
                 mode = EncryptionMode.SelectedItem.ToString().Remove(0, EncryptionMode.SelectedItem.ToString().Length - 3);
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    if (saveFileDialog.FileName != "")
+                    {
+                        System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
+                    }
+                }
             }
             catch(NullReferenceException ex)
             {
@@ -53,9 +61,6 @@ namespace Projekt_AES
             }
         }
 
-        private void chooseFile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
 }
