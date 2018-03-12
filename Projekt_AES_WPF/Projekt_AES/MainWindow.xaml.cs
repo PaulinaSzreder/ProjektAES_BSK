@@ -35,6 +35,7 @@ namespace Projekt_AES
         string decryptedText;
         byte[] data;
 
+
         private void chooseFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
