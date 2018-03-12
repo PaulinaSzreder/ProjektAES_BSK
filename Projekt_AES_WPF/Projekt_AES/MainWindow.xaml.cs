@@ -30,6 +30,7 @@ namespace Projekt_AES
 
         public static String mode;
         public static FileStream fileStream;
+        public static FileStream fileStreamEncrypted;
         Aes myAes = Aes.Create();
         byte[] encryptedText;
         string decryptedText;
@@ -40,38 +41,14 @@ namespace Projekt_AES
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open);
-                data = new byte[fs.Length];
-                fs.Read(data, 0, (int)fs.Length);
-                fs.Close();
+                fileStream = new FileStream(openFileDialog.FileName, FileMode.Open);
+                data = new byte[fileStream.Length];
+                fileStream.Read(data, 0, (int)fileStream.Length);
+                fileStream.Close();
             }
         }
 
         
-        private void encryptFile_Click(object sender, RoutedEventArgs e)
-        {
-            
-            //string original = Input.Text;
-            string var = System.Text.Encoding.Default.GetString(data);
-            
-            encryptedText = EncryptStringToBytes(var, myAes.Key, myAes.IV);
-            //encryptedText = EncryptStringToBytes(original, myAes.Key, myAes.IV);
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                if (saveFileDialog.FileName != "")
-                {
-                    FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.CreateNew);
-                    fs.Write(encryptedText, 0, encryptedText.Length);
-                    fs.Close();
-                }
-            }
-            MessageBox.Show("Zaszyfrowano plik!");
-             
-        }
-        
-
         private void decryptFile_Click(object sender, RoutedEventArgs e)
         {
 
@@ -82,17 +59,18 @@ namespace Projekt_AES
         }
 
 
-        // Wyrzuca wyjątek kiedy nic się nie wybierze, należy go obsłużyć TODO
+        
         private void Encryption_Click(object sender, RoutedEventArgs e) 
         {
             try
             {
                 mode = EncryptionMode.SelectedItem.ToString().Remove(0, EncryptionMode.SelectedItem.ToString().Length - 3);
+                
                
                 //string original = Input.Text;
-                string var = System.Text.Encoding.Default.GetString(data);
+                //string var = System.Text.Encoding.Default.GetString(data);
 
-                encryptedText = EncryptStringToBytes(var, myAes.Key, myAes.IV);
+                //encryptedText = EncryptStringToBytes(var, myAes.Key, myAes.IV);
                 //encryptedText = EncryptStringToBytes(original, myAes.Key, myAes.IV);
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -100,9 +78,9 @@ namespace Projekt_AES
                 {
                     if (saveFileDialog.FileName != "")
                     {
-                        FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.CreateNew);
-                        fs.Write(encryptedText, 0, encryptedText.Length);
-                        fs.Close();
+                        fileStreamEncrypted = new FileStream(saveFileDialog.FileName, FileMode.Create);
+                        fileStreamEncrypted.Write(encryptedText, 0, encryptedText.Length);
+                        fileStreamEncrypted.Close();
                     }
                 }
                 MessageBox.Show("Zaszyfrowano plik!");
@@ -111,7 +89,10 @@ namespace Projekt_AES
             }
             catch(NullReferenceException ex)
             {
-                MessageBox.Show("Nie wybrano metody szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (fileStream == null)
+                    MessageBox.Show("Nie wybrano pliku do szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Nie wybrano metody szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
