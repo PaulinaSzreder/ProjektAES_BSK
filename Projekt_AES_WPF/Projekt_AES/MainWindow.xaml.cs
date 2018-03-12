@@ -33,21 +33,29 @@ namespace Projekt_AES
         Aes myAes = Aes.Create();
         byte[] encryptedText;
         string decryptedText;
+        byte[] data;
 
         private void chooseFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                fileStream = new FileStream(openFileDialog.FileName, FileMode.Open);
+                FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open);
+                data = new byte[fs.Length];
+                fs.Read(data, 0, (int)fs.Length);
+                fs.Close();
             }
         }
 
+        
         private void encryptFile_Click(object sender, RoutedEventArgs e)
         {
-            string original = Input.Text;
-               
-            encryptedText = EncryptStringToBytes(original, myAes.Key, myAes.IV);
+            
+            //string original = Input.Text;
+            string var = System.Text.Encoding.Default.GetString(data);
+            
+            encryptedText = EncryptStringToBytes(var, myAes.Key, myAes.IV);
+            //encryptedText = EncryptStringToBytes(original, myAes.Key, myAes.IV);
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             if (saveFileDialog.ShowDialog() == true)
@@ -59,12 +67,14 @@ namespace Projekt_AES
                     fs.Close();
                 }
             }
-            MessageBox.Show("Zaszyfrowano tekst");
+            MessageBox.Show("Zaszyfrowano plik!");
+             
         }
+        
 
         private void decryptFile_Click(object sender, RoutedEventArgs e)
         {
-            
+
             decryptedText = DescryptStringFromBytes(encryptedText, myAes.Key, myAes.IV);
 
             MessageBox.Show("Odszyfrowano tekst");
@@ -78,6 +88,26 @@ namespace Projekt_AES
             try
             {
                 mode = EncryptionMode.SelectedItem.ToString().Remove(0, EncryptionMode.SelectedItem.ToString().Length - 3);
+               
+                //string original = Input.Text;
+                string var = System.Text.Encoding.Default.GetString(data);
+
+                encryptedText = EncryptStringToBytes(var, myAes.Key, myAes.IV);
+                //encryptedText = EncryptStringToBytes(original, myAes.Key, myAes.IV);
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    if (saveFileDialog.FileName != "")
+                    {
+                        FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.CreateNew);
+                        fs.Write(encryptedText, 0, encryptedText.Length);
+                        fs.Close();
+                    }
+                }
+                MessageBox.Show("Zaszyfrowano plik!");
+
+
             }
             catch(NullReferenceException ex)
             {
