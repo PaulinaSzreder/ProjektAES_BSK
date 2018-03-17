@@ -32,12 +32,12 @@ namespace Projekt_AES
         public static FileStream fileStream;
         public static FileStream fileStreamEncrypted;
         Aes myAes = Aes.Create();
-        byte[] encryptedText;
+        byte[] encryptedText = null;
         string decryptedText;
         byte[] data;
 
 
-        private void chooseFile_Click(object sender, EventArgs e)
+        private void chooseFileClick(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -49,31 +49,40 @@ namespace Projekt_AES
             }
         }
 
-        
-        private void decryptFile_Click(object sender, RoutedEventArgs e)
+        private void encryptFileClick(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                mode = EncryptionMode.SelectedItem.ToString().Remove(0, EncryptionMode.SelectedItem.ToString().Length - 3);
 
-            decryptedText = DescryptStringFromBytes(encryptedText, myAes.Key, myAes.IV);
+                string var = System.Text.Encoding.Default.GetString(data);
+
+                encryptedText = encryptStringToBytes(var, myAes.Key, myAes.IV);
+
+                MessageBox.Show("Zaszyfrowano plik!");
+
+            }
+            catch (NullReferenceException ex)
+            {
+                if (fileStream == null)
+                    MessageBox.Show("Nie wybrano pliku do szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Nie wybrano metody szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void decryptFileClick(object sender, RoutedEventArgs e)
+        {
+            decryptedText = decryptStringFromBytes(encryptedText, myAes.Key, myAes.IV);
 
             MessageBox.Show("Odszyfrowano tekst");
             MessageBox.Show(decryptedText);
         }
 
-
-        
-        private void Encryption_Click(object sender, RoutedEventArgs e) 
+        private void writeFileClick(object sender, RoutedEventArgs e)
         {
-            try
+            if (encryptedText != null)
             {
-                mode = EncryptionMode.SelectedItem.ToString().Remove(0, EncryptionMode.SelectedItem.ToString().Length - 3);
-                
-               
-                //string original = Input.Text;
-                //string var = System.Text.Encoding.Default.GetString(data);
-
-                //encryptedText = EncryptStringToBytes(var, myAes.Key, myAes.IV);
-                //encryptedText = EncryptStringToBytes(original, myAes.Key, myAes.IV);
-
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 if (saveFileDialog.ShowDialog() == true)
                 {
@@ -84,21 +93,12 @@ namespace Projekt_AES
                         fileStreamEncrypted.Close();
                     }
                 }
-                MessageBox.Show("Zaszyfrowano plik!");
-
-
-            }
-            catch(NullReferenceException ex)
-            {
-                if (fileStream == null)
-                    MessageBox.Show("Nie wybrano pliku do szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                else
-                    MessageBox.Show("Nie wybrano metody szyfrowania!!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        
 
         // Encrypt the string to an array of bytes.
-        private static byte[] EncryptStringToBytes(string data, byte[] key, byte[] initVector)
+        private static byte[] encryptStringToBytes(string data, byte[] key, byte[] initVector)
         {
             byte[] encrypted;
             // Create an Aes object with the specified key and IV.
@@ -130,7 +130,7 @@ namespace Projekt_AES
         }
 
         // Decrypt the bytes to a string.
-        static string DescryptStringFromBytes(byte[] cipherText, byte[] key, byte[] initVector)
+        static string decryptStringFromBytes(byte[] cipherText, byte[] key, byte[] initVector)
         {
             string decryptedText = null;
 
