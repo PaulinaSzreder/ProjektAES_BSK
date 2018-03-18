@@ -100,7 +100,7 @@ namespace Projekt_AES
                 {
                     if (saveFileDialog.FileName != "")
                     {
-                        FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.CreateNew);
+                        FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create);
                         fs.Write(encryptedText, 0, encryptedText.Length);
                         fs.Close();
                     }
