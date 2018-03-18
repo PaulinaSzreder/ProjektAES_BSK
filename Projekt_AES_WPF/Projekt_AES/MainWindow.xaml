@@ -7,19 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid Cursor="Arrow">
-        <Button Content="Plik" HorizontalAlignment="Left" Margin="150,73,0,0" VerticalAlignment="Top" Width="107" FontSize="20" Click="chooseFile_Click"/>
-        <Label Content="Wybierz plik do zaszyfrowania" HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="16"/>
-        <Label Content="Wybierz tryb szyfrowania" HorizontalAlignment="Left" Margin="23,127,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox Name="EncryptionMode" HorizontalAlignment="Left" Margin="137,164,0,0" VerticalAlignment="Top" Width="120" >
+        <Label Name="ChooseFileLabel" Content="Wybierz plik" HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="16"/>
+        <Button Name="FileButton" Content="Plik" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="120" FontSize="15" Click="chooseFileClick"/>
+        <Label Name="ChooseModeLabel" Content="Wybierz tryb szyfrowania" HorizontalAlignment="Left" Margin="23,108,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <ComboBox Name="EncryptionMode" HorizontalAlignment="Left" Margin="23,143,0,0" VerticalAlignment="Top" Width="120" >
             <ComboBoxItem Name="ECB" Content="ECB" HorizontalAlignment="Left" Width="118.4"/>
             <ComboBoxItem Name="CBC" Content="CBC" HorizontalAlignment="Left" Width="118.4"/>
             <ComboBoxItem Name="CFB" Content="CFB" HorizontalAlignment="Left" Width="118.4"/>
             <ComboBoxItem Name="OFB" Content="OFB" HorizontalAlignment="Left" Width="118.4"/>
         </ComboBox>
-        <TextBox Name="Input" HorizontalAlignment="Left" Height="23" Margin="293,195,0,0" TextWrapping="Wrap" Text="InputText" VerticalAlignment="Top" Width="120" />
-        <Button Name="EncTextButton" Content="Szyfruj2" HorizontalAlignment="Left" Margin="293,230,0,0" VerticalAlignment="Top" Width="75" Click="encryptFile_Click"/>
-        <Button Name="DecTextButton" Content="Deszyfruj" HorizontalAlignment="Left" Margin="373,230,0,0" VerticalAlignment="Top" Width="75" Click="decryptFile_Click"/>
-        <Button Name="Encryption" Content="Szyfruj" HorizontalAlignment="Left" Margin="383,255,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="Encryption_Click"/>
-    
+        <Button Name="EncryptionButton" Content="Szyfruj" HorizontalAlignment="Left" Margin="250,48,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="encryptFileClick"/>
+        <Button Name="DecryptionButton" Content="Deszyfruj" HorizontalAlignment="Left" Margin="250,98,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="decryptFileClick"/>
+        <Button Name="WriteButton" Content="Zapisz" HorizontalAlignment="Left" Margin="250,148,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="writeFileClick"/>
+        
+
     </Grid>
 </Window>
