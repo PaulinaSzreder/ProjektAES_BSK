@@ -5,22 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_AES"
         mc:Ignorable="d"
-        Title="MainWindow" Height="290" Width="525">
-    <Grid Cursor="Arrow" Margin="0,0,0.4,10.4">
-        <Label Name="ChooseFileLabel" Content="Wybierz plik" HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="16"/>
-        <Button Name="FileButton" Content="Plik" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="120" FontSize="15" Click="chooseFileClick"/>
-        <Label Name="ChooseModeLabel" Content="Wybierz tryb szyfrowania" HorizontalAlignment="Left" Margin="23,108,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox Name="EncryptionMode" HorizontalAlignment="Left" Margin="23,143,0,0" VerticalAlignment="Top" Width="120" >
-            <ComboBoxItem Name="ECB" Content="ECB" HorizontalAlignment="Left" Width="118.4"/>
-            <ComboBoxItem Name="CBC" Content="CBC" HorizontalAlignment="Left" Width="118.4"/>
-            <ComboBoxItem Name="CFB" Content="CFB" HorizontalAlignment="Left" Width="118.4"/>
-            <ComboBoxItem Name="OFB" Content="OFB" HorizontalAlignment="Left" Width="118.4"/>
-        </ComboBox>
-        <Button Name="EncryptionButton" Content="Szyfruj" HorizontalAlignment="Left" Margin="250,48,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="encryptFileClick"/>
-        <Button Name="DecryptionButton" Content="Deszyfruj" HorizontalAlignment="Left" Margin="250,98,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="decryptFileClick"/>
-        <Button Name="WriteButton" Content="Zapisz" HorizontalAlignment="Left" Margin="250,148,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="writeFileClick"/>
-        <ProgressBar Height="15" Margin="20,215,20,0" VerticalAlignment="Top"/>
+        Title="MainWindow" Height="381.4" Width="598.2">
+    <TabControl>
+        <TabItem Header="Szyfrowanie">
+            <Grid Cursor="Arrow" Margin="0,0,0.4,10.4">
+                <Label Name="ChooseFileLabel" Content="Wybierz plik" HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="16"/>
+                <Button Name="FileButton" Content="Plik" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="120" FontSize="15" Click="chooseFileClick"/>
+                <Label Name="ChooseModeLabel" Content="Wybierz tryb szyfrowania" HorizontalAlignment="Left" Margin="23,108,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <ComboBox Name="EncryptionMode" HorizontalAlignment="Left" Margin="23,143,0,0" VerticalAlignment="Top" Width="120"  >
+                    <ComboBoxItem Name="ECB" Content="ECB" HorizontalAlignment="Left" Width="118.4"/>
+                    <ComboBoxItem Name="CBC" Content="CBC" HorizontalAlignment="Left" Width="118.4"/>
+                    <ComboBoxItem Name="CFB" Content="CFB" HorizontalAlignment="Left" Width="118.4"/>
+                    <ComboBoxItem Name="OFB" Content="OFB" HorizontalAlignment="Left" Width="118.4"/>
+                </ComboBox>
+                <Button Name="EncryptionButton" Content="Szyfruj" HorizontalAlignment="Left" Margin="250,48,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="encryptFileClick"/>
+                <Button Name="DecryptionButton" Content="Deszyfruj" HorizontalAlignment="Left" Margin="250,98,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="decryptFileClick"/>
+                <Button Name="WriteButton" Content="Zapisz" HorizontalAlignment="Left" Margin="250,148,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="writeFileClick"/>
+                <ProgressBar Height="15" Margin="20,215,20,0" VerticalAlignment="Top" />
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Użytkownicy">
+            <Grid >
+                <TextBox Height="23" TextWrapping="Wrap" Text="Nazwa Użytkownika" Width="120" Margin="0,67,446.4,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="Hasło" Width="120" Margin="20,116,446.4,185"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="Powtórz Hasło" Width="120" Margin="0,171,446.4,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="Nazwa Użytkownika" Width="120" Margin="282,67,184.4,234" RenderTransformOrigin="0.207,0.757"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="282,125,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Zarejestruj się" HorizontalAlignment="Left" Margin="20,19,0,0" VerticalAlignment="Top" Width="167" Height="35" FontSize="18"/>
+                <Label Content="Zaloguj się" HorizontalAlignment="Left" Margin="282,19,0,0" VerticalAlignment="Top" Height="42" Width="125" FontSize="18"/>
+                <Button Content="Rejestracja" HorizontalAlignment="Left" Margin="65,224,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button Content="Logowanie" HorizontalAlignment="Left" Margin="327,199,0,0" VerticalAlignment="Top" Width="75"/>
 
 
-    </Grid>
+            </Grid>
+        </TabItem>
+
+
+    </TabControl>
 </Window>
