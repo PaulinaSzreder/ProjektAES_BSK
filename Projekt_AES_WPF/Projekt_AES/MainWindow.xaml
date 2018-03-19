@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_AES"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid Cursor="Arrow">
+        Title="MainWindow" Height="290" Width="525">
+    <Grid Cursor="Arrow" Margin="0,0,0.4,10.4">
         <Label Name="ChooseFileLabel" Content="Wybierz plik" HorizontalAlignment="Left" Margin="23,38,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="16"/>
         <Button Name="FileButton" Content="Plik" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="120" FontSize="15" Click="chooseFileClick"/>
         <Label Name="ChooseModeLabel" Content="Wybierz tryb szyfrowania" HorizontalAlignment="Left" Margin="23,108,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -19,7 +19,8 @@
         <Button Name="EncryptionButton" Content="Szyfruj" HorizontalAlignment="Left" Margin="250,48,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="encryptFileClick"/>
         <Button Name="DecryptionButton" Content="Deszyfruj" HorizontalAlignment="Left" Margin="250,98,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="decryptFileClick"/>
         <Button Name="WriteButton" Content="Zapisz" HorizontalAlignment="Left" Margin="250,148,0,0" VerticalAlignment="Top" Width="101" Height="32" Click="writeFileClick"/>
-        
+        <ProgressBar Height="15" Margin="20,215,20,0" VerticalAlignment="Top"/>
+
 
     </Grid>
 </Window>
